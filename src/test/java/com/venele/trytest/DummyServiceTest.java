@@ -19,6 +19,6 @@ class DummyServiceTest {
 
         String result = dummyService.concat(before, after);
 
-        assertEquals(before + after, result);
+        assertEquals(before + after + "wrong", result);
     }
 }
