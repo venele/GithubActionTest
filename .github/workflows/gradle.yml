@@ -11,9 +11,7 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK 11
@@ -24,14 +22,19 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew clean build
+    - name: Publish Test Report
+      uses: scacap/action-surefire-report@v1
+      with:
+        report_paths: '**/build/test-results/test/TEST-*.xml'
     - name: JaCoCo Report
       # You may pin to the exact commit or the version.
       # uses: Madrapps/jacoco-report@67036d804c34935864dfef774aa6c6d3924c021d
       uses: Madrapps/jacoco-report@v1.1
       with:
         # Path of the generated xml file
-        path: ${{ github.workspace }}/build/jacoco/test.exec
+        path: ${{ github.workspace }}/build/reports/jacoco/test/jacocoTestReport.xml
         # Github personal token to add commits to Pull Request
         token: ${{ secrets.GITHUB_TOKEN }}
         # The minimum code coverage that is required to pass for overall project
+        min-coverage-changed-files: 70
         debug-mode: true
