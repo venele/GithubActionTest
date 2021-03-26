@@ -24,3 +24,14 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew clean build
+    - name: JaCoCo Report
+      # You may pin to the exact commit or the version.
+      # uses: Madrapps/jacoco-report@67036d804c34935864dfef774aa6c6d3924c021d
+      uses: Madrapps/jacoco-report@v1.1
+      with:
+        # Path of the generated xml file
+        path: ./build/jacoco/test.exec
+        # Github personal token to add commits to Pull Request
+        token: ${{secret.WORKFLOW_TOKEN}}
+        # The minimum code coverage that is required to pass for overall project
+        debug-mode: false
