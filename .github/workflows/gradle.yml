@@ -32,6 +32,6 @@ jobs:
         # Path of the generated xml file
         path: ./build/jacoco/test.exec
         # Github personal token to add commits to Pull Request
-        token: ${{secret.WORKFLOW_TOKEN}}
+        token: ${{secrets.WORKFLOW_TOKEN}}
         # The minimum code coverage that is required to pass for overall project
         debug-mode: false
