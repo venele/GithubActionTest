@@ -30,6 +30,9 @@ dependencies {
 test {
     useJUnitPlatform()
     finalizedBy jacocoTestReport // report is always generated after tests run
+    reports {
+        junitXml.enabled = true
+    }
 }
 
 jacocoTestReport {
